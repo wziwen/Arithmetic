@@ -57,14 +57,14 @@ public class HeartFlyView extends RelativeLayout {
         super.onFinishInflate();
     }
 
+    float x;
+    float y;
     public void startAnimation() {
         setVisibility(VISIBLE);
         postDelayed(new Runnable() {
             @Override
             public void run() {
             Animator[] animators = new Animator[heartViewCount];
-            final float x = imageViews[0].getX();
-            final float y = imageViews[0].getY();
             for (int i = 0; i < heartViewCount; i ++) {
                 animators[i] = createAnimation(imageViews[i], i * 80);
             }
@@ -80,6 +80,13 @@ public class HeartFlyView extends RelativeLayout {
                     }
                     setVisibility(GONE);
                 }
+
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    super.onAnimationStart(animation);
+                    x = imageViews[0].getX();
+                    y = imageViews[0].getY();
+                }
             });
             finalAnimation.playTogether(animators);
             finalAnimation.start();
@@ -91,20 +98,27 @@ public class HeartFlyView extends RelativeLayout {
 
         ObjectAnimator noOpAnimator = ObjectAnimator.ofFloat(imageView, View.SCALE_X, 0.5f, 1f);
         noOpAnimator.setDuration(delay);
-
-        ObjectAnimator scaleXAnimator = ObjectAnimator.ofFloat(imageView, View.SCALE_X, 0.5f, 1f);
-        ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(imageView, View.SCALE_Y, 0.5f, 1f);
-        ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(imageView, View.ALPHA, 0.5f, 1f);
-        AnimatorSet enterAnimatorSet = new AnimatorSet();
-        enterAnimatorSet.playTogether(scaleXAnimator, scaleYAnimator, alphaAnimator);
-        enterAnimatorSet.setDuration(250);
-        enterAnimatorSet.addListener(new AnimatorListenerAdapter() {
+        noOpAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
                 imageView.setVisibility(VISIBLE);
             }
         });
+
+//        ObjectAnimator scaleXAnimator = ObjectAnimator.ofFloat(imageView, View.SCALE_X, 0.5f, 1f);
+//        ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(imageView, View.SCALE_Y, 0.5f, 1f);
+//        ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(imageView, View.ALPHA, 0.5f, 1f);
+//        AnimatorSet enterAnimatorSet = new AnimatorSet();
+//        enterAnimatorSet.playTogether(scaleXAnimator, scaleYAnimator, alphaAnimator);
+//        enterAnimatorSet.setDuration(250);
+//        enterAnimatorSet.addListener(new AnimatorListenerAdapter() {
+//            @Override
+//            public void onAnimationStart(Animator animation) {
+//                super.onAnimationStart(animation);
+//                imageView.setVisibility(VISIBLE);
+//            }
+//        });
 
         int width = getWidth();
         int height = getHeight();
@@ -153,7 +167,7 @@ public class HeartFlyView extends RelativeLayout {
         translateAnimatorSet.setDuration(1000);
 
         AnimatorSet allAnimator = new AnimatorSet();
-        allAnimator.playSequentially(noOpAnimator, enterAnimatorSet, translateAnimatorSet);
+        allAnimator.playSequentially(noOpAnimator, translateAnimatorSet);
         return allAnimator;
     }
 

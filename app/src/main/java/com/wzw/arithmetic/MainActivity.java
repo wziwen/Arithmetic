@@ -102,6 +102,7 @@ public class MainActivity extends ActivityRecog {
             String[] result = (String[]) msg.obj;
             if (arithmeticItem != null && result != null && result.length > 0) {
                 for (String string : result) {
+                    tvTempResult.setVisibility(View.VISIBLE);
                     tvTempResult.setText(string);
                     int value;
                     try {
