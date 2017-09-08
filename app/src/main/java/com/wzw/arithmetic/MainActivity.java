@@ -14,6 +14,8 @@ import com.baidu.android.voicedemo.recognization.CommonRecogParams;
 import com.baidu.android.voicedemo.recognization.RecogResult;
 import com.baidu.android.voicedemo.recognization.online.OnlineRecogParams;
 
+import java.util.ArrayList;
+
 public class MainActivity extends ActivityRecog {
     {
         DESC_TEXT = "在线普通识别功能(含长语音)\n" +
@@ -52,6 +54,7 @@ public class MainActivity extends ActivityRecog {
         tvQuestion = (TextView) findViewById(R.id.tv_question);
         tvAnwser = (TextView) findViewById(R.id.tv_answer);
         tvTempResult = (TextView) findViewById(R.id.tv_temp_result);
+        tvTempResult.setVisibility(View.GONE);
 
         heartFlyView = (HeartFlyView) findViewById(R.id.heart_fly_view);
         findViewById(R.id.btn_qiang_left)
@@ -78,9 +81,10 @@ public class MainActivity extends ActivityRecog {
                     }
                 });
 
-        int maxValue = 10;
-        int[] types = {0, 1, 2, 3};
-        questionGenerator = new QuestionGenerator(maxValue, types);
+        Bundle bundle = getIntent().getExtras();
+        int maxValue = bundle.getInt("max_value");
+        ArrayList<Integer> list = (ArrayList<Integer>) bundle.getSerializable("types");
+        questionGenerator = new QuestionGenerator(maxValue, list.toArray(new Integer[list.size()]));
     }
 
     ArithmeticItem arithmeticItem;
@@ -88,6 +92,8 @@ public class MainActivity extends ActivityRecog {
     @Override
     protected void start() {
         super.start();
+        tvTempResult.setText("");
+        tvTempResult.setVisibility(View.GONE);
         txtLog.append(arithmeticItem.toCalculateString() + "\n");
     }
 

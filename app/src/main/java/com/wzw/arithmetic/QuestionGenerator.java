@@ -15,14 +15,14 @@ public class QuestionGenerator {
     /**
      * 生成包括的范围四则算法
      */
-    int[] types;
+    Integer[] types;
     /**
      * 算法最大值(控制10以内, 100以内)
      */
     int MAX_VALUE = 100;
     Random random = new Random();
 
-    public QuestionGenerator(int maxValue, int... types) {
+    public QuestionGenerator(int maxValue, Integer... types) {
         this.MAX_VALUE = maxValue;
         this.types = types;
     }

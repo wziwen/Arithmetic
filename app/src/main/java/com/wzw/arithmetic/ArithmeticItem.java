@@ -22,10 +22,10 @@ public class ArithmeticItem {
 
     }
 
-    public static String[] TYPES = {"＋", "－", "×", "÷"};
+    public static String[] TYPES = {" ＋ ", " － ", " × ", " ÷ "};
 
     public String toCalculateString() {
-        return x + TYPES[type] + y + "=";
+        return x + TYPES[type] + y + " = ";
     }
 
 

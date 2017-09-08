@@ -47,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <RadioGroup
+            android:id="@+id/rg_count_range"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -83,6 +84,7 @@
                 android:textSize="@dimen/content_text_size" />
         </RadioGroup>
         <RadioGroup
+            android:visibility="gone"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -134,6 +136,7 @@
                 android:textSize="@dimen/title_text_size"/>
 
             <CheckBox
+                android:id="@+id/cb_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="52dp"
                 android:layout_marginLeft="40dp"
@@ -145,6 +148,7 @@
                 android:textSize="@dimen/content_text_size"/>
 
             <CheckBox
+                android:id="@+id/cb_sub"
                 android:layout_width="wrap_content"
                 android:layout_height="52dp"
                 android:layout_marginLeft="40dp"
@@ -155,6 +159,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/content_text_size"/>
             <CheckBox
+                android:id="@+id/cb_multiply"
                 android:layout_width="wrap_content"
                 android:layout_height="52dp"
                 android:layout_marginLeft="40dp"
@@ -165,6 +170,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/content_text_size"/>
             <CheckBox
+                android:id="@+id/cb_divide"
                 android:layout_width="wrap_content"
                 android:checked="true"
                 android:layout_height="52dp"
