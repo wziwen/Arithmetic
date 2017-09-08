@@ -5,10 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#855F0E"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.wzw.arithmetic.MainActivity">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#004600"/>
+
     <LinearLayout
-        android:visibility="gone"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -17,6 +28,7 @@
         <TextView
             android:id="@+id/tv_question"
             android:textSize="66sp"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5 * 10 = "/>
@@ -24,11 +36,13 @@
         <TextView
             android:id="@+id/tv_answer"
             android:textSize="76sp"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:visibility="gone"
                   android:layout_width="fill_parent"
                   android:orientation="vertical"
                   android:layout_height="fill_parent">
@@ -84,4 +98,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <ImageButton
+        android:id="@+id/btn_qiang_left"
+        android:layout_marginLeft="80dp"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/btn_text_size"
+        android:background="@drawable/round_red_bg"
+        android:layout_width="96dp"
+        android:layout_height="96dp" />
+
+    <ImageButton
+        android:id="@+id/btn_qiang_right"
+        android:layout_marginRight="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/btn_text_size"
+        android:background="@drawable/round_red_bg"
+        android:layout_width="96dp"
+        android:layout_height="96dp" />
+
+    <ImageButton
+        android:textColor="@color/white"
+        android:textSize="@dimen/btn_text_size"
+        android:background="@drawable/btn_chuti"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/btn_question" />
+
+    <TextView
+        android:id="@+id/tv_temp_result"
+        android:textSize="50sp"
+        android:layout_marginBottom="140dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
 </RelativeLayout>

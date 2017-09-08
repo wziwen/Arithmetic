@@ -58,26 +58,33 @@ public class HeartFlyView extends RelativeLayout {
     }
 
     public void startAnimation() {
-        Animator[] animators = new Animator[heartViewCount];
-        final float x = imageViews[0].getX();
-        final float y = imageViews[0].getY();
-        for (int i = 0; i < heartViewCount; i ++) {
-            animators[i] = createAnimation(imageViews[i], i * 80);
-        }
-        AnimatorSet finalAnimation = new AnimatorSet();
-        finalAnimation.addListener(new AnimatorListenerAdapter() {
+        setVisibility(VISIBLE);
+        postDelayed(new Runnable() {
             @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                for (int i = 0; i < heartViewCount; i ++) {
-                    imageViews[i].setX(x);
-                    imageViews[i].setY(y);
-                    imageViews[i].setVisibility(INVISIBLE);
-                }
+            public void run() {
+            Animator[] animators = new Animator[heartViewCount];
+            final float x = imageViews[0].getX();
+            final float y = imageViews[0].getY();
+            for (int i = 0; i < heartViewCount; i ++) {
+                animators[i] = createAnimation(imageViews[i], i * 80);
             }
-        });
-        finalAnimation.playTogether(animators);
-        finalAnimation.start();
+            AnimatorSet finalAnimation = new AnimatorSet();
+            finalAnimation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    for (int i = 0; i < heartViewCount; i ++) {
+                        imageViews[i].setX(x);
+                        imageViews[i].setY(y);
+                        imageViews[i].setVisibility(INVISIBLE);
+                    }
+                    setVisibility(GONE);
+                }
+            });
+            finalAnimation.playTogether(animators);
+            finalAnimation.start();
+            }
+        }, 100);
     }
 
     private Animator createAnimation(final HeartImageView imageView, int delay) {

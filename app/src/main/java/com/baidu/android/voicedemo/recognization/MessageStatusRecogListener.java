@@ -2,6 +2,7 @@ package com.baidu.android.voicedemo.recognization;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 /**
  * Created by fujiayi on 2017/6/16.
@@ -41,6 +42,7 @@ public class MessageStatusRecogListener extends StatusRecogListener {
     public void onAsrPartialResult(String[] results, RecogResult recogResult) {
         sendMessage(STATUS_PART_RESULT, results);
         sendStatusMessage("临时识别结果，结果是“" + results[0] + "”；原始json：" + recogResult.getOrigalJson());
+        Log.w("结果", "结果是“" + results[0] + "”；原始json：" + recogResult.getOrigalJson());
         super.onAsrPartialResult(results, recogResult);
     }
 

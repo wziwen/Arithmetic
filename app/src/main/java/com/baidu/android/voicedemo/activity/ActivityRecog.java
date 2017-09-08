@@ -90,14 +90,14 @@ public abstract class ActivityRecog extends ActivityCommon implements IStatus {
     /**
      * 开始录音后，手动停止录音。SDK会识别在此过程中的录音。点击“停止”按钮后调用。
      */
-    private void stop() {
+    public void stop() {
         myRecognizer.stop();
     }
 
     /**
      * 开始录音后，取消这次录音。SDK会取消本次识别，回到原始状态。点击“取消”按钮后调用。
      */
-    private void cancel() {
+    public void cancel() {
         myRecognizer.cancel();
     }
 

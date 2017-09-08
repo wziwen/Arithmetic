@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item >
+        <shape>
+            <solid android:color="#ffffff"/>
+            <corners android:radius="100dp"/>
+            <stroke android:width="10dp" android:color="#d81e05"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/qiangda"/>
+</layer-list>

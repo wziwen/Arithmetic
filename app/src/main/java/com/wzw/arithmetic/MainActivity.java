@@ -5,6 +5,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.TouchDelegate;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.android.voicedemo.activity.ActivityRecog;
@@ -25,6 +26,12 @@ public class MainActivity extends ActivityRecog {
         layout = R.layout.activity_main;
     }
 
+    TextView tvQuestion;
+    TextView tvAnwser;
+    TextView tvTempResult;
+
+    HeartFlyView heartFlyView;
+
     QuestionGenerator questionGenerator;
 
     public MainActivity(){
@@ -42,16 +49,36 @@ public class MainActivity extends ActivityRecog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        findViewById(R.id.heart_fly_view)
+        tvQuestion = (TextView) findViewById(R.id.tv_question);
+        tvAnwser = (TextView) findViewById(R.id.tv_answer);
+        tvTempResult = (TextView) findViewById(R.id.tv_temp_result);
+
+        heartFlyView = (HeartFlyView) findViewById(R.id.heart_fly_view);
+        findViewById(R.id.btn_qiang_left)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        HeartFlyView heartFlyView = (HeartFlyView) v;
-                        heartFlyView.startAnimation();
+                        start();
+                    }
+                });
+        findViewById(R.id.btn_qiang_right)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        start();
                     }
                 });
 
-        int maxValue = 100;
+        findViewById(R.id.btn_question)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        arithmeticItem = questionGenerator.generate();
+                        tvQuestion.setText(arithmeticItem.toCalculateString());
+                    }
+                });
+
+        int maxValue = 10;
         int[] types = {0, 1, 2, 3};
         questionGenerator = new QuestionGenerator(maxValue, types);
     }
@@ -61,7 +88,6 @@ public class MainActivity extends ActivityRecog {
     @Override
     protected void start() {
         super.start();
-        arithmeticItem = questionGenerator.generate();
         txtLog.append(arithmeticItem.toCalculateString() + "\n");
     }
 
@@ -70,19 +96,27 @@ public class MainActivity extends ActivityRecog {
             String[] result = (String[]) msg.obj;
             if (arithmeticItem != null && result != null && result.length > 0) {
                 for (String string : result) {
+                    tvTempResult.setText(string);
+                    int value;
                     try {
-                        int value = Integer.parseInt(string);
-                        if (value == arithmeticItem.result) {
-                            Toast.makeText(this, "答对了", Toast.LENGTH_SHORT).show();
-                            // // TODO: 2017/9/8 停止语音
-                            break;
-                        }
+                        value = Integer.parseInt(string);
                     } catch (Exception e) {
+                        value = Integer.MIN_VALUE;
                         e.printStackTrace();
+                    }
+                    if (value == arithmeticItem.result || string.contains(arithmeticItem.chineseResult)) {
+                        heartFlyView.startAnimation();
+                        Toast.makeText(this, "答对了", Toast.LENGTH_SHORT).show();
+                        // 停止语音
+                        stop();
+                        break;
                     }
                 }
             }
             return;
+        }
+        if (msg.what == STATUS_FINISHED) {
+            stop();
         }
         if (txtLog != null && msg.obj != null) {
             txtLog.append(msg.obj.toString() + "\n");
