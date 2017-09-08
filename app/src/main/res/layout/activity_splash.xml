@@ -163,7 +163,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="52dp"
                 android:layout_marginLeft="40dp"
-                android:checked="true"
                 android:background="@drawable/radio_btn_bg"
                 android:button="@null"
                 android:text="乘法"
@@ -172,7 +171,6 @@
             <CheckBox
                 android:id="@+id/cb_divide"
                 android:layout_width="wrap_content"
-                android:checked="true"
                 android:layout_height="52dp"
                 android:layout_marginLeft="40dp"
                 android:background="@drawable/radio_btn_bg"

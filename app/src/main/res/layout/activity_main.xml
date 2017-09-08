@@ -147,4 +147,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""/>
+    <TextView
+        android:id="@+id/tv_flower_left"
+        android:drawableLeft="@drawable/flower"
+        android:gravity="bottom"
+        android:text="x 0"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp" />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/tv_flower_right"
+            android:drawableRight="@drawable/flower"
+            android:gravity="bottom"
+            android:text="0 "
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp" />
 </RelativeLayout>

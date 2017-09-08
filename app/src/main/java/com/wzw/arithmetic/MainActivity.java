@@ -2,8 +2,6 @@ package com.wzw.arithmetic;
 
 import android.os.Bundle;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
-import android.view.TouchDelegate;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,7 +9,6 @@ import android.widget.Toast;
 import com.baidu.android.voicedemo.activity.ActivityRecog;
 import com.baidu.android.voicedemo.activity.setting.OnlineSetting;
 import com.baidu.android.voicedemo.recognization.CommonRecogParams;
-import com.baidu.android.voicedemo.recognization.RecogResult;
 import com.baidu.android.voicedemo.recognization.online.OnlineRecogParams;
 
 import java.util.ArrayList;
@@ -29,12 +26,19 @@ public class MainActivity extends ActivityRecog {
     }
 
     TextView tvQuestion;
-    TextView tvAnwser;
+    TextView tvAnswer;
     TextView tvTempResult;
+    TextView tvLeftFlower;
+    TextView tvRightFlower;
+
 
     HeartFlyView heartFlyView;
 
     QuestionGenerator questionGenerator;
+
+    int leftCount = 0;
+    int rightCount = 0;
+    boolean isLeftAnswer = false;
 
     public MainActivity(){
         super();
@@ -52,9 +56,11 @@ public class MainActivity extends ActivityRecog {
         super.onCreate(savedInstanceState);
 
         tvQuestion = (TextView) findViewById(R.id.tv_question);
-        tvAnwser = (TextView) findViewById(R.id.tv_answer);
+        tvAnswer = (TextView) findViewById(R.id.tv_answer);
         tvTempResult = (TextView) findViewById(R.id.tv_temp_result);
         tvTempResult.setVisibility(View.GONE);
+        tvLeftFlower = (TextView) findViewById(R.id.tv_flower_left);
+        tvRightFlower = (TextView) findViewById(R.id.tv_flower_right);
 
         heartFlyView = (HeartFlyView) findViewById(R.id.heart_fly_view);
         findViewById(R.id.btn_qiang_left)
@@ -62,6 +68,7 @@ public class MainActivity extends ActivityRecog {
                     @Override
                     public void onClick(View v) {
                         start();
+                        isLeftAnswer = true;
                     }
                 });
         findViewById(R.id.btn_qiang_right)
@@ -69,6 +76,7 @@ public class MainActivity extends ActivityRecog {
                     @Override
                     public void onClick(View v) {
                         start();
+                        isLeftAnswer = false;
                     }
                 });
 
@@ -76,8 +84,7 @@ public class MainActivity extends ActivityRecog {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        arithmeticItem = questionGenerator.generate();
-                        tvQuestion.setText(arithmeticItem.toCalculateString());
+                        newQuestion();
                     }
                 });
 
@@ -85,6 +92,13 @@ public class MainActivity extends ActivityRecog {
         int maxValue = bundle.getInt("max_value");
         ArrayList<Integer> list = (ArrayList<Integer>) bundle.getSerializable("types");
         questionGenerator = new QuestionGenerator(maxValue, list.toArray(new Integer[list.size()]));
+
+        newQuestion();
+    }
+
+    private void newQuestion() {
+        arithmeticItem = questionGenerator.generate();
+        tvQuestion.setText(arithmeticItem.toCalculateString());
     }
 
     ArithmeticItem arithmeticItem;
@@ -111,9 +125,16 @@ public class MainActivity extends ActivityRecog {
                         value = Integer.MIN_VALUE;
                         e.printStackTrace();
                     }
-                    if (value == arithmeticItem.result || string.contains(arithmeticItem.chineseResult)) {
+                    if ((value == arithmeticItem.result || string.contains(arithmeticItem.chineseResult))) {
                         heartFlyView.startAnimation();
-                        Toast.makeText(this, "答对了", Toast.LENGTH_SHORT).show();
+                        // 第一次回答时才有花
+                        if (!arithmeticItem.answered) {
+                            updateFlower();
+                            Toast.makeText(this, "答对了，奖励一朵小红花", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "答对了，第一个答对的才有小红花哦", Toast.LENGTH_SHORT).show();
+                        }
+                        arithmeticItem.answered = true;
                         // 停止语音
                         stop();
                         break;
@@ -127,6 +148,16 @@ public class MainActivity extends ActivityRecog {
         }
         if (txtLog != null && msg.obj != null) {
             txtLog.append(msg.obj.toString() + "\n");
+        }
+    }
+
+    private void updateFlower() {
+        if (isLeftAnswer) {
+            leftCount ++;
+            tvLeftFlower.setText("x " + leftCount);
+        } else {
+            rightCount ++;
+            tvRightFlower.setText(leftCount + " x");
         }
     }
 }

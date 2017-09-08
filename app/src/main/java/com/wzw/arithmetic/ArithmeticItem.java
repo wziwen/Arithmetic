@@ -10,6 +10,7 @@ public class ArithmeticItem {
     int y;
     int type;
     int result;
+    boolean answered = false;
 
     String chineseResult;
 
