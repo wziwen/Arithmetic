@@ -29,7 +29,6 @@
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:visibility="gone"
                   android:layout_width="fill_parent"
                   android:orientation="vertical"
                   android:layout_height="fill_parent">
@@ -55,7 +54,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="12dp"
+                android:textSize="30sp"
                 android:id="@+id/txtLog" />
         </ScrollView>
 
@@ -67,6 +66,7 @@
             android:id="@+id/setting"
             android:onClick="onClick"
             android:layout_alignParentBottom="true" />
+
 
         <Button
             android:layout_width="match_parent"
@@ -80,6 +80,7 @@
 
     <com.wzw.arithmetic.HeartFlyView
         android:id="@+id/heart_fly_view"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

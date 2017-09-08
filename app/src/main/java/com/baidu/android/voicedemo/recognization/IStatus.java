@@ -6,6 +6,7 @@ package com.baidu.android.voicedemo.recognization;
 
 public interface IStatus {
 
+    public static final int STATUS_PART_RESULT = -100;
     public static final int STATUS_NONE = 2;
 
     public static final int STATUS_READY = 3;

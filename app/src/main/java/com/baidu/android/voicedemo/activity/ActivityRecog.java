@@ -123,11 +123,11 @@ public abstract class ActivityRecog extends ActivityCommon implements IStatus {
             public void onClick(View v) {
                 switch (status) {
                     case STATUS_NONE: // 初始状态
+                        txtLog.setText("");
+                        txtResult.setText("");
                         start();
                         status = STATUS_WAITING_READY;
                         updateBtnTextByStatus();
-                        txtLog.setText("");
-                        txtResult.setText("");
                         break;
                     case STATUS_WAITING_READY: // 调用本类的start方法后，即输入START事件后，等待引擎准备完毕。
                     case STATUS_READY: // 引擎准备完毕。

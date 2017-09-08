@@ -18,40 +18,32 @@
         android:background="#004600"/>
 
     <TextView
-        android:layout_width="30dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="好好学习"
-        android:textColor="#ffffff"
-        android:textSize="26sp"
-        android:textStyle="normal"
-        android:visibility="gone"/>
-
-    <TextView
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="100dp"
-        android:text="天天向上"
-        android:textColor="#ffffff"
-        android:textSize="26sp"
-        android:textStyle="normal"
-        android:visibility="gone"/>
+        android:ems="1"
+        android:textColor="@color/white"
+        android:textSize="@dimen/motto_text_size"
+        android:textStyle="normal"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:padding="@dimen/activity_vertical_margin"
-        android:text="开始"
-        android:textColor="#ffffff"
-        android:textSize="26sp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="100dp"
+        android:ems="1"
+        android:text="天天向上"
+        android:textColor="@color/white"
+        android:textSize="@dimen/motto_text_size"
         android:textStyle="normal"/>
 
 
     <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/content_margin_left"
         android:orientation="vertical"
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <RadioGroup
@@ -61,69 +53,144 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:text="计算范围"
-                android:textColor="#ffffff"
-                android:textSize="24sp"/>
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_text_size"/>
 
             <RadioButton
+                android:id="@+id/rb_range_10"
                 android:layout_width="wrap_content"
-                android:layout_height="47dp"
+                android:layout_height="52dp"
                 android:layout_marginLeft="40dp"
                 android:background="@drawable/radio_btn_bg"
                 android:button="@null"
                 android:checked="true"
                 android:text="10"
-                android:textColor="#ffffff"
-                android:textSize="20sp"/>
+                android:textColor="@color/white"
+                android:textSize="@dimen/content_text_size"/>
 
             <RadioButton
+                android:id="@+id/rb_range_100"
                 android:layout_width="wrap_content"
-                android:layout_height="47dp"
-                android:layout_marginLeft="20dp"
+                android:layout_height="52dp"
+                android:layout_marginLeft="40dp"
                 android:background="@drawable/radio_btn_bg"
                 android:button="@null"
                 android:text="100"
-                android:textColor="#ffffff"
-                android:textSize="20sp"/>
+                android:textColor="@color/white"
+                android:textSize="@dimen/content_text_size" />
         </RadioGroup>
         <RadioGroup
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:text="计算范围"
-                android:textColor="#ffffff"
-                android:textSize="24sp"/>
+                android:text="练习次数"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_text_size"/>
 
             <RadioButton
+                android:id="@+id/rb_count_10"
                 android:layout_width="wrap_content"
-                android:layout_height="47dp"
+                android:layout_height="52dp"
                 android:layout_marginLeft="40dp"
                 android:background="@drawable/radio_btn_bg"
                 android:button="@null"
                 android:checked="true"
                 android:text="10"
-                android:textColor="#ffffff"
-                android:textSize="20sp"/>
+                android:textColor="@color/white"
+                android:textSize="@dimen/content_text_size"/>
 
             <RadioButton
+                android:id="@+id/rb_count_20"
                 android:layout_width="wrap_content"
-                android:layout_height="47dp"
-                android:layout_marginLeft="20dp"
+                android:layout_height="52dp"
+                android:layout_marginLeft="40dp"
                 android:background="@drawable/radio_btn_bg"
                 android:button="@null"
-                android:text="100"
-                android:textColor="#ffffff"
-                android:textSize="20sp"/>
+                android:text="20"
+                android:textColor="@color/white"
+                android:textSize="@dimen/content_text_size"/>
         </RadioGroup>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:text="运算类别"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_text_size"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_marginLeft="40dp"
+                android:background="@drawable/radio_btn_bg"
+                android:button="@null"
+                android:checked="true"
+                android:text="加法"
+                android:textColor="@color/white"
+                android:textSize="@dimen/content_text_size"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_marginLeft="40dp"
+                android:background="@drawable/radio_btn_bg"
+                android:button="@null"
+                android:checked="true"
+                android:text="减法"
+                android:textColor="@color/white"
+                android:textSize="@dimen/content_text_size"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_marginLeft="40dp"
+                android:checked="true"
+                android:background="@drawable/radio_btn_bg"
+                android:button="@null"
+                android:text="乘法"
+                android:textColor="@color/white"
+                android:textSize="@dimen/content_text_size"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:checked="true"
+                android:layout_height="52dp"
+                android:layout_marginLeft="40dp"
+                android:background="@drawable/radio_btn_bg"
+                android:button="@null"
+                android:text="除法"
+                android:textColor="@color/white"
+                android:textSize="@dimen/content_text_size"/>
+
+        </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_vertical_margin"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="开始"
+        android:textColor="@color/white"
+        android:textSize="@dimen/btn_text_size"
+        android:textStyle="normal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/btn_start" />
 
 
 </RelativeLayout>

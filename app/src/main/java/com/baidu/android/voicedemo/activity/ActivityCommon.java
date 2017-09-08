@@ -14,11 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.baidu.android.voicedemo.recognization.RecogResult;
 import com.baidu.android.voicedemo.util.Logger;
 import com.baidu.android.voicedemo.recognization.online.InFileStream;
 import com.wzw.arithmetic.R;
 
 import java.util.ArrayList;
+
+import static com.baidu.android.voicedemo.recognization.IStatus.STATUS_PART_RESULT;
 
 /**
  * Created by fujiayi on 2017/6/20.
@@ -66,6 +69,10 @@ public abstract class ActivityCommon extends AppCompatActivity {
     protected abstract void initRecog();
 
     protected void handleMsg(Message msg) {
+        if (msg.what == STATUS_PART_RESULT) {
+            RecogResult recogResult = (RecogResult) msg.obj;
+            return;
+        }
         if (txtLog != null && msg.obj != null) {
             txtLog.append(msg.obj.toString() + "\n");
         }
